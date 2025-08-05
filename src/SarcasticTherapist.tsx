@@ -114,27 +114,27 @@ export default function SarcasticTherapist() {
     <div className="min-h-screen" style={{ backgroundColor: '#FDF6F0' }}>
       {/* Header */}
       <div className="bg-white/90 backdrop-blur-md border-b border-gray-200/60 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-4xl mx-auto px-6 py-5">
+        <div className="max-w-4xl mx-auto px-3 py-3 md:px-6 md:py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
+            <div className="flex items-center space-x-2 md:space-x-4 flex-1 min-w-0">
+              <div className="relative flex-shrink-0">
                 <div 
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-lg border-2 border-white"
+                  className="w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center text-lg md:text-2xl shadow-lg border-2 border-white"
                   style={{ backgroundColor: '#F5A623' }}
                 >
                   🤖
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-3 border-white shadow-sm animate-pulse"></div>
+                
               </div>
-              <div>
-                <h1 className="text-2xl font-bold tracking-tight" style={{ color: '#2D2D2D' }}>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-lg md:text-2xl font-bold tracking-tight truncate" style={{ color: '#2D2D2D' }}>
                   {t('title')}
                 </h1>
-                <p className="text-sm text-gray-600 flex items-center mt-1">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                  {t('subtitle')}
+                <p className="text-xs md:text-sm text-gray-600 flex items-center mt-1 truncate">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse flex-shrink-0"></div>
+                  <span className="truncate">{t('subtitle')}</span>
                 </p>
-                <div className="flex items-center mt-1 space-x-4 text-xs text-gray-500">
+                <div className="hidden md:flex items-center mt-1 space-x-4 text-xs text-gray-500">
                   <span className="flex items-center">
                     <MessageCircle size={12} className="mr-1" />
                     {messages.filter(m => m.from === "user").length} {t('sessions')}
@@ -143,24 +143,25 @@ export default function SarcasticTherapist() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 md:space-x-2 flex-shrink-0">
               <select
                 value={i18n.language}
                 onChange={(e) => i18n.changeLanguage(e.target.value)}
-                className="px-3 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
+                className="px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white"
                 style={{ color: '#2D2D2D' }}
               >
-                <option value="en">🇺🇸 English</option>
-                <option value="fr">🇫🇷 Français</option>
+                <option value="en">🇺🇸 EN</option>
+                <option value="fr">🇫🇷 FR</option>
               </select>
               <button 
-                className="p-3 rounded-full hover:bg-gray-100 transition-all duration-200 hover:scale-105"
+                className="p-2 md:p-3 rounded-full hover:bg-gray-100 transition-all duration-200 hover:scale-105"
                 style={{ color: '#2D2D2D' }}
               >
-                <Settings size={20} />
+                <Settings size={16} className="md:hidden" />
+                <Settings size={20} className="hidden md:block" />
               </button>
               <button 
-                className="p-3 rounded-full hover:bg-gray-100 transition-all duration-200 hover:scale-105"
+                className="hidden md:block p-3 rounded-full hover:bg-gray-100 transition-all duration-200 hover:scale-105"
                 style={{ color: '#2D2D2D' }}
               >
                 <MoreHorizontal size={20} />
@@ -171,10 +172,11 @@ export default function SarcasticTherapist() {
       </div>
 
       {/* Chat Container */}
-      <div className="max-w-4xl mx-auto h-screen flex flex-col">
+      <div className="max-w-4xl mx-auto flex flex-col" style={{ height: 'calc(100vh - 70px)' }}>
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-8 pb-40" style={{ 
-          background: 'linear-gradient(180deg, #FDF6F0 0%, #FBF2EA 100%)'
+        <div className="flex-1 overflow-y-auto px-3 py-4 md:px-6 md:py-6 space-y-4 md:space-y-8" style={{ 
+          background: 'linear-gradient(180deg, #FDF6F0 0%, #FBF2EA 100%)',
+          paddingBottom: '160px'
         }}>
           {messages.map((msg, i) => (
             <div
@@ -183,9 +185,9 @@ export default function SarcasticTherapist() {
             >
               {/* AI Avatar */}
               {msg.from === "bot" && (
-                <div className="flex flex-col items-center mr-4">
+                <div className="flex flex-col items-center mr-2 md:mr-4 flex-shrink-0">
                   <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg border-2 border-white"
+                    className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-xl shadow-lg border-2 border-white"
                     style={{ backgroundColor: '#F5A623' }}
                   >
                     🤖
@@ -193,9 +195,9 @@ export default function SarcasticTherapist() {
                 </div>
               )}
               
-              <div className="flex flex-col max-w-xs sm:max-w-md md:max-w-2xl">
+              <div className="flex flex-col flex-1 max-w-[calc(100vw-100px)] md:max-w-xs lg:max-w-md xl:max-w-2xl">
                 <div
-                  className={`px-6 py-4 rounded-3xl shadow-md relative backdrop-blur-sm ${
+                  className={`px-3 py-3 md:px-6 md:py-4 rounded-2xl md:rounded-3xl shadow-md relative backdrop-blur-sm ${
                     msg.from === "user"
                       ? "rounded-br-lg"
                       : "rounded-bl-lg"
@@ -206,16 +208,16 @@ export default function SarcasticTherapist() {
                     border: '1px solid rgba(255, 255, 255, 0.2)'
                   }}
                 >
-                  <div className="text-sm sm:text-base leading-relaxed font-medium">
+                  <div className="text-sm md:text-base leading-relaxed font-medium break-words">
                     <Markdown>{msg.text}</Markdown>
                   </div>
                   
                   {/* Enhanced Message tail */}
                   <div 
-                    className={`absolute top-4 w-0 h-0 ${
+                    className={`absolute top-3 md:top-4 w-0 h-0 ${
                       msg.from === "user" 
-                        ? "right-0 border-l-[12px] border-t-[12px] border-t-transparent"
-                        : "left-0 border-r-[12px] border-t-[12px] border-t-transparent"
+                        ? "right-0 border-l-[8px] md:border-l-[12px] border-t-[8px] md:border-t-[12px] border-t-transparent"
+                        : "left-0 border-r-[8px] md:border-r-[12px] border-t-[8px] md:border-t-[12px] border-t-transparent"
                     }`}
                     style={{ 
                       borderLeftColor: msg.from === "user" ? '#6A0DAD' : 'transparent',
@@ -224,7 +226,7 @@ export default function SarcasticTherapist() {
                   ></div>
                 </div>
                 
-                <div className={`text-xs text-gray-500 mt-2 px-3 font-medium ${
+                <div className={`text-xs text-gray-500 mt-1 md:mt-2 px-2 md:px-3 font-medium ${
                   msg.from === "user" ? "text-right" : "text-left"
                 }`}>
                   {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -233,9 +235,9 @@ export default function SarcasticTherapist() {
 
               {/* User Avatar */}
               {msg.from === "user" && (
-                <div className="flex flex-col items-center ml-4">
+                <div className="flex flex-col items-center ml-2 md:ml-4 flex-shrink-0">
                   <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg border-2 border-white"
+                    className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-xl shadow-lg border-2 border-white"
                     style={{ backgroundColor: '#6A0DAD' }}
                   >
                     😅
@@ -248,28 +250,28 @@ export default function SarcasticTherapist() {
           {/* Enhanced Typing Indicator */}
           {isTyping && (
             <div className="flex justify-start animate-fadeIn">
-              <div className="flex flex-col items-center mr-4">
+              <div className="flex flex-col items-center mr-2 md:mr-4 flex-shrink-0">
                 <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg border-2 border-white animate-pulse"
+                  className="w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-xl shadow-lg border-2 border-white animate-pulse"
                   style={{ backgroundColor: '#F5A623' }}
                 >
                   🤖
                 </div>
               </div>
               <div 
-                className="px-6 py-4 rounded-3xl rounded-bl-lg shadow-md backdrop-blur-sm"
+                className="px-3 py-3 md:px-6 md:py-4 rounded-2xl md:rounded-3xl rounded-bl-lg shadow-md backdrop-blur-sm"
                 style={{ 
                   backgroundColor: '#F5A623',
                   border: '1px solid rgba(255, 255, 255, 0.2)'
                 }}
               >
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2 md:space-x-3">
                   <div className="flex space-x-1">
-                    <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
-                    <div className="w-3 h-3 bg-white rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                    <div className="w-3 h-3 bg-white rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                    <div className="w-2 h-2 md:w-3 md:h-3 bg-white rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                   </div>
-                  <span className="text-sm text-white font-medium">{t('typing')}</span>
+                  <span className="text-xs md:text-sm text-white font-medium">{t('typing')}</span>
                 </div>
               </div>
             </div>
@@ -280,14 +282,14 @@ export default function SarcasticTherapist() {
 
         {/* Input Area */}
         <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-2xl">
-          <div className="max-w-4xl mx-auto p-4">
+          <div className="max-w-4xl mx-auto p-3 md:p-4">
             {/* Quick Actions */}
-            <div className="flex flex-wrap gap-2 mb-4 justify-center">
+            <div className="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4 justify-center">
               {quickActions.map((action, index) => (
                 <button
                   key={index}
                   onClick={() => setInput(action.text)}
-                  className="px-3 py-2 text-xs rounded-full border transition-all duration-200 hover:scale-105 active:scale-95 flex items-center space-x-1"
+                  className="px-2 py-1 md:px-3 md:py-2 text-xs rounded-full border transition-all duration-200 hover:scale-105 active:scale-95 flex items-center space-x-1"
                   style={{ 
                     borderColor: '#FF5E5B',
                     color: '#2D2D2D',
@@ -305,14 +307,14 @@ export default function SarcasticTherapist() {
                   }}
                   disabled={loading}
                 >
-                  <span>{action.icon}</span>
-                  <span>{action.text}</span>
+                  <span className="text-sm">{action.icon}</span>
+                  <span className="hidden md:inline text-xs">{action.text}</span>
                 </button>
               ))}
             </div>
 
             {/* Input Bar */}
-            <div className="flex items-end space-x-3">
+            <div className="flex items-end space-x-2 md:space-x-3">
               <div className="flex-1 relative">
                 <input
                   type="text"
@@ -320,7 +322,7 @@ export default function SarcasticTherapist() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={t('placeholder')}
-                  className="w-full px-6 py-4 pr-14 text-base border-2 rounded-full focus:outline-none transition-all duration-300 placeholder-gray-400 shadow-sm"
+                  className="w-full px-4 py-3 md:px-6 md:py-4 pr-12 md:pr-14 text-sm md:text-base border-2 rounded-full focus:outline-none transition-all duration-300 placeholder-gray-400 shadow-sm"
                   style={{ 
                     borderColor: '#FF5E5B',
                     color: '#2D2D2D'
@@ -333,15 +335,16 @@ export default function SarcasticTherapist() {
                   }}
                   disabled={loading}
                 />
-                <button className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
-                  <Smile size={20} />
+                <button className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
+                  <Smile size={18} className="md:hidden" />
+                  <Smile size={20} className="hidden md:block" />
                 </button>
               </div>
               
               <button
                 onClick={sendMessage}
                 disabled={loading || !input.trim()}
-                className={`w-14 h-14 rounded-full font-bold transition-all duration-300 transform shadow-lg flex items-center justify-center ${
+                className={`w-12 h-12 md:w-14 md:h-14 rounded-full font-bold transition-all duration-300 transform shadow-lg flex items-center justify-center ${
                   loading || !input.trim()
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:scale-110 active:scale-95 shadow-xl"
@@ -352,15 +355,18 @@ export default function SarcasticTherapist() {
                 }}
               >
                 {loading ? (
-                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 md:w-6 md:h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 ) : (
-                  <Send size={20} />
+                  <>
+                    <Send size={18} className="md:hidden" />
+                    <Send size={20} className="hidden md:block" />
+                  </>
                 )}
               </button>
             </div>
             
             {/* Footer */}
-            <div className="text-center mt-3">
+            <div className="text-center mt-2 md:mt-3">
               <p className="text-xs text-gray-500">
                 {t('footer')}
               </p>
