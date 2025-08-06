@@ -370,6 +370,12 @@ export default function SarcasticTherapist() {
               <p className="text-xs text-gray-500">
                 {t('footer')}
               </p>
+              <p className="text-xs text-gray-400 mt-1">
+                Made with ❤️ and a lot of sarcasm by <span className="font-medium text-gray-600">Mintsa</span>
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                © 2025 Mintsa. All rights reserved.
+              </p>
             </div>
           </div>
         </div>
